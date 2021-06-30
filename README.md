@@ -6,21 +6,17 @@
 
 ```bash
 # Clone this repository
-git clone https://github.com/aviral1701/ScrapeSavegit
+git clone https://github.com/amitsgh/CodeChefScrapper.git
 
 # Go into the repository
-cd code
+cd CodeChefScrapper-master
 
 # Run the app
-python CodeChef_Scrapper.py
+python scrapper.py
 
 #Enter the username when prompted.
 
 ```
-
-### TODOs :
-+ Make the code run faster.
-+ Save files with language extension and in code comments write URL of the problem.
 
 ### Contributing :
 + Fork the repo.
