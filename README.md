@@ -12,10 +12,7 @@ git clone https://github.com/amitsgh/CodeChefScrapper.git
 cd CodeChefScrapper-master
 
 # Run the app
-python scrapper.py
-
-#Enter the username when prompted.
-
+python main.py
 ```
 
 ### Contributing :
