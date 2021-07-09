@@ -7,16 +7,13 @@ import urllib
 from bs4 import BeautifulSoup
 from time import sleep
 
-@st.cache
 def get_user_url(username):
-    base_url = "https://www.codechef.com/"
-    url = base_url + username
+    url = 'https://www.codechef.com/users/{}'.format(username)
     return url
 
 def get_user_data(url):
-    source_code = requests.get(url)
-    plain_text = source_code.text
-    soup = BeautifulSoup(plain_text, features='lxml')
+    page = requests.get(url)
+    soup = BeautifulSoup(page.text, 'html.parser')
     sleep(2)
     code_chef_name = soup.find("h1", attrs={'class': 'h2-style'}).text
     overall_rating = soup.find("div", attrs={'class': 'rating-number'}).text
@@ -24,29 +21,27 @@ def get_user_data(url):
     long_rating = ratings[1].text
     cookoff_rating = ratings[5].text
     lunch_rating = ratings[9].text
-    st.write("Code Chef rating of", code_chef_name)
+    st.write("Code Chef Rating ")
     st.write(pd.DataFrame(
-    {
-    'first column' : [long_rating],
-    'second column' : [cookoff_rating],
-    'third column' : [lunch_rating],
-    'fourth column' : [overall_rating]
-    }
+        {
+            'Long Challenge' : [long_rating],
+            'Cook Off' : [cookoff_rating],
+            'Lunch Time' : [lunch_rating],
+            'Overall Rating' : [overall_rating]
+        },
+        index=[code_chef_name],
     ))
     
 
 try:
-    st.title(
-        """
-        Code Chef User's Data
-        """
-    )
+    st.title("""Code Chef User's Data""")
+    
     st.write("### Enter Username")
     username = st.text_input(label="", )
+    
     if not username:
         st.error("Please enter a username.")
     else:
-        st.write(" #### Fetching data...")
         url = get_user_url(username)
         get_user_data(url)
         
