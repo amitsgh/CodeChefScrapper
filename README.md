@@ -1,6 +1,8 @@
 ### Requirements :
 + BeautifulSoup
 + Requests
++ Streamlit
++ Urllib
 
 ### Instructions :
 
